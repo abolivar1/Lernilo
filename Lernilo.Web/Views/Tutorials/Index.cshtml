@@ -1,47 +1,56 @@
-﻿@model IEnumerable<Lernilo.Web.Data.Entities.Category>
-
+﻿@model IEnumerable<Lernilo.Web.Data.Entities.Tutorial>
 @{
-    ViewData["Title"] = "Categories";
+    ViewData["Title"] = "My Tutorials";
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 <body style="background-color:darkseagreen">
     <p>
-        <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
+        <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New Tutorial</a>
     </p>
     <div class="text-danger">
         <p>
             <h4>@TempData["Delete"]</h4>
         </p>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading" style="background-color:limegreen">
-                    <h3 class="panel-title"><b>Categories</b></h3>
+                    <h3 class="panel-title"><b>My Tutorials</b></h3>
                 </div>
                 <div class="panel-body" style="background-color:lightgreen">
-                    <table class="table table-hover table-responsive table-striped" id="MyTable" >
+                    <table class="table table-hover table-responsive table-striped" id="MyTable">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Name)
+                                    Tutorials
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody >
-                            @foreach (var item in Model)
+                        <tbody>
+                            @foreach (var item in Model.OrderByDescending(t => t.DateLocal))
                             {
                                 <tr>
                                     <td>
                                         <b>
-                                        @Html.DisplayFor(modelItem => item.Name)
+                                            <div class="col-md-3">
+                                                @if (!string.IsNullOrEmpty(item.PicturePath))
+                                                {
+                                                    <img src="@Url.Content(item.PicturePath)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;" />
+                                                }
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a><br />
+                                                @Html.DisplayFor(modelItem => item.DateLocal)<br />
+                                                @Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(modelItem => item.Category.Name)
+                                            </div>
                                         </b>
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
                                         <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
@@ -73,3 +82,5 @@
         });
     </script>
 }
+
+

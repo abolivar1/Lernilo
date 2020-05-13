@@ -24,7 +24,7 @@ namespace Lernilo.Web.Data.Entities
 
         public float TotalRate { get; set; }
 
-        public User User { get; set; }
+        public Customer Customer { get; set; }
 
         public Category Category { get; set; }
 
@@ -40,6 +40,6 @@ namespace Lernilo.Web.Data.Entities
 
         [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
-        public DateTime StartDateLocal => Date.ToLocalTime();
+        public DateTime DateLocal => Date.ToLocalTime();
     }
 }

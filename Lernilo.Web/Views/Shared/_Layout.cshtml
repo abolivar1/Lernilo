@@ -33,8 +33,28 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>Home</b></a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>About</b></a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>Contact</b></a></li>
-                    <li><a asp-area="" asp-controller="Categories" asp-action="Index" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>Categories</b></a></li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+
+                        <li><a asp-area="" asp-controller="Categories" asp-action="Index" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>Categories</b></a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                    {
+                <li><a asp-area="" asp-controller="Tutorials" asp-action="Index" style="color:#ffffff; text-shadow:1px -1px 1px #000;"><b>My Tutorials</b></a></li>
+                    }
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
