@@ -72,6 +72,100 @@ namespace Lernilo.Web.Controllers
 
             return View(model);
         }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tutorial = await _context.Tutorials
+                .Include(t => t.Category)
+                .FirstOrDefaultAsync(t => t.Id == id);
+            if (tutorial == null)
+            {
+                return NotFound();
+            }
+            var model = _converterHelper.ToTutorialViewModel(tutorial);
+            return View(model);
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(TutorialViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    string path = model.PicturePath;
+
+                    if (model.LogoFile != null)
+                    {
+                        path = await _imageHelper.UploadImageAsync(model.LogoFile, "Tutorials");
+                    }
+                    var tutorial = _converterHelper.ToTutorial(model, path, false);
+                    _context.Update(tutorial);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    ModelState.AddModelError(string.Empty, "An error has ocurred saving the data"); 
+                    return View(model);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tutorial = await _context.Tutorials
+                .Include(o => o.Category)
+                .Include(o => o.Comments)
+                .ThenInclude(c => c.Customer)
+                .ThenInclude(cu => cu.User)
+                .FirstOrDefaultAsync(o => o.Id == id.Value);
+            if (tutorial == null)
+            {
+                return NotFound();
+            }
+
+            return View(tutorial);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var tutorial = await _context.Tutorials
+                .Include(c => c.Comments)
+                .Include(c => c.TutorialReports)
+                .FirstOrDefaultAsync(c => c.Id == id);
+            if (tutorial.Comments.Count > 0)
+            {
+                foreach(var comment in tutorial.Comments)
+                {
+                    _context.Comments.Remove(comment);
+                }
+                
+            }
+            if (tutorial.TutorialReports.Count > 0)
+            {
+                foreach (var report in tutorial.TutorialReports)
+                {
+                    _context.TutorialReports.Remove(report);
+                }
+
+            }
+            _context.Tutorials.Remove(tutorial);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

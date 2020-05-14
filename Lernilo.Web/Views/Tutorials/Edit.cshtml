@@ -1,0 +1,38 @@
+﻿@model Lernilo.Web.Models.TutorialViewModel
+@{
+    ViewData["Title"] = "Edit Tutorial";
+}
+    <body style="background-color:darkseagreen">
+        <h3><b>Edit Tutorial</b></h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="CategoryId" />
+                    <input type="hidden" asp-for="PicturePath" />
+                    <input type="hidden" asp-for="Date" />
+
+                    <partial name="_Tutorial" />
+
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <br /><br />
+                @if (!string.IsNullOrEmpty(Model.PicturePath))
+                {
+                    <img src="@Url.Content(Model.PicturePath)" alt="Image" style="width:600px;height:400px;max-width: 100%;" />
+                }
+            </div>
+
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </body>

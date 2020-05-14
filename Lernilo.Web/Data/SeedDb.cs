@@ -50,7 +50,7 @@ namespace Lernilo.Web.Data
                     Email = email,
                     UserName = email,
                     Document = document,
-                    PicturePath = $"~/images/Tournaments/alex.png"
+                    PicturePath = $"~/images/Users/alex.png"
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");

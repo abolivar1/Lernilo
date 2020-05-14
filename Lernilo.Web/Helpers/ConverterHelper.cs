@@ -28,7 +28,8 @@ namespace Lernilo.Web.Helpers
                 PicturePath = path,
                 Title = model.Title,
                 Description = model.Description,
-                Category = _context.Categories.Find(model.CategoryId)
+                Category = _context.Categories.Find(model.CategoryId),
+                Date = model.Date
             };
         }
 

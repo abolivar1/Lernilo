@@ -1,0 +1,84 @@
+﻿@model Lernilo.Web.Data.Entities.Tutorial
+
+<hr />
+<div class="panel-body">
+    <div class="col-md-6">
+        <br />
+        @if (!string.IsNullOrEmpty(Model.PicturePath))
+        {
+            <img src="@Url.Content(Model.PicturePath)" alt="Image" style="width:600px;height:400px;max-width: 100%;" />
+        }
+    </div>
+    <div class="col-md-6">
+        <p>
+            <h3>
+                <b style="color:black">
+                    @Html.DisplayFor(model => model.Title)
+                </b>
+            </h3>
+        <p>
+
+        <p style="color:black">
+            @Html.DisplayFor(model => model.DateLocal) - @Html.DisplayNameFor(model => model.Category.Name): @Html.DisplayFor(model => model.Category.Name)
+        <p>
+
+        <p style="color:black">
+            @Html.DisplayFor(model => model.Description)
+        <p>
+    </div>
+</div>
+
+<hr />
+<div class="panel-body">
+    <table class=" table  table-responsive" style="background-color:white" id="MyTable">
+        <thead>
+            <tr>
+                <th>
+                    <h4>
+                        <b style="color:black">Comments</b>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="AddComment" class="btn btn-primary" style="float:right"><i class="glyphicon glyphicon-plus"></i></a>
+
+                        }
+                    </h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Comments.Count > 0)
+            {
+                @foreach (var item in Model.Comments)
+                {
+                    <tr>
+                        <td>
+                            <b style="color:black">
+                                <div class="col-md-1">
+                                    @if (!string.IsNullOrEmpty(item.Customer.User.PicturePath))
+                                    {
+                                        <img src="@Url.Content(item.Customer.User.PicturePath)" alt="Image" style="width:60px;height:60px;max-width: 100%; border-radius:30px" />
+                                    }
+                                </div>
+                                <div>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.Customer.User.FullName) -
+                                        @Html.DisplayFor(modelItem => item.StartDateLocal)
+                                    </p>
+                                    @Html.DisplayFor(modelItem => item.Remark)
+                                </div>
+                            </b>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Comments.Count == 0)
+            {
+                <tr>
+                    <td style="text-align:center">
+                        <b style="color:black">There is no comments yet</b>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
