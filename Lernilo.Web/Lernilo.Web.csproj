@@ -14,4 +14,8 @@
     <Folder Include="wwwroot\images\Tutorials\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Lernilo.Common\Lernilo.Common.csproj" />
+  </ItemGroup>
+
 </Project>

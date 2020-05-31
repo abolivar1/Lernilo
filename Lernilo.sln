@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lernilo.Web", "Lernilo.Web\Lernilo.Web.csproj", "{4CD59AC0-7675-41BD-8C86-8A82A14C52D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lernilo.Web", "Lernilo.Web\Lernilo.Web.csproj", "{4CD59AC0-7675-41BD-8C86-8A82A14C52D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lernilo.Common", "Lernilo.Common\Lernilo.Common.csproj", "{45329C27-4D06-4CA5-9670-690DA7CB6A49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lernilo.Prism", "Lernilo.Prism\Lernilo.Prism\Lernilo.Prism.csproj", "{F1A29164-51A2-402B-B6D0-C68CA0DFA06D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lernilo.Prism.Android", "Lernilo.Prism\Lernilo.Prism.Android\Lernilo.Prism.Android.csproj", "{E95781A5-1A78-41AD-9DA6-331EC28BAB89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,20 @@ Global
 		{4CD59AC0-7675-41BD-8C86-8A82A14C52D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CD59AC0-7675-41BD-8C86-8A82A14C52D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CD59AC0-7675-41BD-8C86-8A82A14C52D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45329C27-4D06-4CA5-9670-690DA7CB6A49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45329C27-4D06-4CA5-9670-690DA7CB6A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45329C27-4D06-4CA5-9670-690DA7CB6A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45329C27-4D06-4CA5-9670-690DA7CB6A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A29164-51A2-402B-B6D0-C68CA0DFA06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A29164-51A2-402B-B6D0-C68CA0DFA06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A29164-51A2-402B-B6D0-C68CA0DFA06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A29164-51A2-402B-B6D0-C68CA0DFA06D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E95781A5-1A78-41AD-9DA6-331EC28BAB89}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
