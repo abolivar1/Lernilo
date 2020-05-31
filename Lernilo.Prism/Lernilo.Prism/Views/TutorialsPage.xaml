@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Lernilo.Prism.Views.TutorialsPage"
+             Title="{Binding Title}">
+
+    <StackLayout Padding="5">
+        <CollectionView ItemsSource="{Binding Tutorials}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="25"
+                        HasShadow="True"
+                        Margin="0,0,0,5"
+                        BackgroundColor="GreenYellow">
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectTutorialCommand}"/>
+                            </Grid.GestureRecognizers>
+
+                            <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                                <ffimageloading:CachedImage Grid.Column="0"
+                                                    Aspect="AspectFill"
+                                                    Source="{Binding LogoFullPath}" 
+                                                    CacheDuration= "50"
+                                                    Margin="5"
+                                                    RetryCount= "5"
+                                                    RetryDelay= "300"
+                                                    WidthRequest="100"/>
+
+                                <StackLayout Grid.Column="1"
+                                     VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" 
+                                   FontAttributes="Bold"
+                                   FontSize="Medium"
+                                   LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding DateLocal, StringFormat='{0:yyyy/MM/dd}'}"
+                                   LineBreakMode="TailTruncation"
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="End" />
+                                    <Label Text="{Binding Customer.FullName}"
+                                   LineBreakMode="TailTruncation"
+                                   FontAttributes="Italic" 
+                                   VerticalOptions="End" />
+                                </StackLayout>
+                                <Image Grid.Column="2" 
+                                Source="ic_more_vert"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>

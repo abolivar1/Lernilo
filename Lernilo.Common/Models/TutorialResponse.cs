@@ -14,6 +14,10 @@ namespace Lernilo.Common.Models
 
         public string PicturePath { get; set; }
 
+        public string LogoFullPath => string.IsNullOrEmpty(PicturePath)
+    ? "https://travelexpalex3.azurewebsites.net//images/noimage.png"
+    : $"https://lernilo.azurewebsites.net{PicturePath.Substring(1)}";
+
         public float TotalRate { get; set; }
 
         public UserResponse Customer { get; set; }
