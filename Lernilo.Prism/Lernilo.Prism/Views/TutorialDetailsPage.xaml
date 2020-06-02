@@ -2,8 +2,105 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Lernilo.Prism.Views.TutorialDetailsPage"
              Title="{Binding Title}">
-  
+    <!--<AbsoluteLayout>-->
+    <StackLayout Padding="5">
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="{Binding Tutorial.Category.Name}" 
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    FontSize="Medium"/>
+                        </StackLayout>
+                        <Button Grid.Column="1"
+                                    Command="{Binding RandomCommand}"
+                                    Text="Random Tutorial"
+                                    WidthRequest      ="120"
+                                    HeightRequest     ="60"
+                                    CornerRadius      ="30"
+                                    VerticalOptions   ="End"
+                                    HorizontalOptions ="End"
+                                    BorderWidth       ="5"
+                                    BorderColor       ="{StaticResource ColorDanger}"
+                                    BackgroundColor   ="{StaticResource ColorFont}"/>
+                    </Grid>
+                </StackLayout>
+                <StackLayout Grid.Row="1">
+                    <ffimageloading:CachedImage Aspect="Fill"
+                                                    Source="{Binding Tutorial.LogoFullPath}" 
+                                                    CacheDuration= "50"
+                                                    RetryCount= "3"
+                                                    RetryDelay= "600"
+                                                    WidthRequest="350"
+                                                    HeightRequest="350"/>
+                    <Label Text="{Binding Tutorial.Description}" 
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                    <Label Text="votar" 
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"/>
+                </StackLayout>
+                <StackLayout Grid.Row="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" 
+                                    Command="{Binding CommentCommand}"
+                                    Text="Com"
+                                    WidthRequest      ="60"
+                                    HeightRequest     ="60"
+                                    CornerRadius      ="30"
+                                    VerticalOptions   ="Center"
+                                    HorizontalOptions ="Center"
+                                    BorderWidth       ="5"
+                                    BorderColor       ="{StaticResource ColorDanger}"
+                                    BackgroundColor   ="{StaticResource ColorFont}"/>
+                        <Button Grid.Column="1"
+                                    Command="{Binding CommentCommand}"
+                                    Text="Sha"
+                                    WidthRequest      ="60"
+                                    HeightRequest     ="60"
+                                    CornerRadius      ="30"
+                                    VerticalOptions   ="CenterAndExpand"
+                                    HorizontalOptions ="CenterAndExpand"
+                                    BorderWidth       ="5"
+                                    BorderColor       ="{StaticResource ColorDanger}"
+                                    BackgroundColor   ="{StaticResource ColorFont}"/>
+                        <Button Grid.Column="2"
+                                    Command="{Binding CommentCommand}"
+                                    Text="Rep"
+                                    WidthRequest      ="60"
+                                    HeightRequest     ="60"
+                                    CornerRadius      ="30"
+                                    VerticalOptions   ="Center"
+                                    HorizontalOptions ="Center"
+                                    BorderWidth       ="5"
+                                    BorderColor       ="{StaticResource ColorDanger}"
+                                    BackgroundColor   ="{StaticResource ColorFont}"/>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </StackLayout>
+
+    <!--</AbsoluteLayout>-->
+    
 </ContentPage>
